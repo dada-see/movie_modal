@@ -1,38 +1,454 @@
-.App {
-  text-align: center;
+@charset "utf-8";
+h1{
+    line-height: 1.5em;
+}
+button{
+    color: #fff;
+}
+.App{
+    position: relative;
+    width: 100%;
+}
+.header{
+    margin: 40px 4vw 4vw;
+    text-align: center;
+}
+.header h1{
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+.header .search{
+    position: relative;
+    width: 100%;
+    margin-bottom: 5vw;
+}
+.header .search span{
+    position: absolute;
+    left: 10px;
+    top: 7px;
+    font-size: 25px;
+}
+.header .search input{
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+    font-size: 18px;
+    line-height: 20px;
+    border: 0;
+    border-radius: 7px;
+    appearance: none;
+    outline: none;
+}
+.header .search input::placeholder{
+    color: #eee;
+}
+.header .yearMovie{
+    text-align: justify;
+}
+.header .yearMovie p{
+    font-size: 18px;
+    line-height: 1.2em;
+    margin-bottom: 10px;
+}
+.header .yearMovie > div{
+    display: flex;
+    justify-content: space-between;
+}
+.header .yearMovie button{
+    width: 18%;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+    font-size: 3vw;
+    line-height: 7.5vw;
+}
+.header .yearMovie button:hover, .header .yearMovie button.active{
+    background-color: #fff;
+    color: #555;
+}
+.movieList{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 25px 1vw 0 4vw;
+}
+.movieItem{
+    width: 50%;
+    margin-bottom: 20px;
+    padding-right: 3vw;
+    box-sizing: border-box;
+}
+.movieItem .post{
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-bottom: 2vw;
+    overflow: hidden;
+}
+.movieItem .post img{
+    width: 100%;
+    height: auto;
+}
+.movieItem .post .over{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: .3s;
+    text-align: center;
+}
+.movieItem .post:hover .over{
+    opacity: 1;
+}
+.movieItem .post .over button{
+    width: 20vw;
+    border-radius: 4vw;
+    margin-top: 60%;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 3vw;
+    line-height: 2em;
+}
+.movieItem .title{
+    margin-bottom: 4vw;
+    font-size: 4vw;
+    line-height: 1.2em;
+}
+.movieItem .txt{
+    display: flex;
+    margin-bottom: 5vw;
+    font-size: 3vw;
+    line-height: 1em;
+    color: #eee;
+}
+.movieItem .txt p:nth-child(-n+2)::after{
+    content: "|";
+    display: inline-block;
+    margin: 0 1vw;
+    color: #999;
+}
+.movieItem .txt .star{
+    display: flex;
+    align-items: center;
+}
+.movieItem .txt .star .material-symbols-outlined{
+    margin-right: 3px;
+    font-size: 3vw;
+    line-height: 1em;
+    color: rgb(226, 10, 10);
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+.movieItem .modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #121212;
+    z-index: 100; 
+    overflow-y: scroll;
+}
+.movieItem .modal.show{
+    display: block;
+}
+.movieModal{
+    margin: 0 auto;
+}
+.modalWrap{
+    position: relative;
+    margin-bottom: 80px;
+}
+.movieModal img{
+    width: 100%;
+    height: auto;
+}
+.movieModal .bg{
+    width: 100%;
+    height: 40vw;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.movieModal .bg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.movieModal .info{
+    display: flex;
+    align-items: center;
+    margin: -20vw 8vw 0;
+}
+.movieModal .info > p{
+    width: 40%;
+    height: auto;
+    margin-right: 4vw;
+    overflow: hidden;
+}
+.movieModal .info > p img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.movieModal .info > div{
+    width: 60%;
+    padding-top: 22vw;
+    box-sizing: border-box;
+}
+.movieModal .info .title{
+    margin-bottom: 6vw;
+    font-size: 4vw;
+    line-height: 1.5em;
+}
+.movieModal .info .title span{
+    font-size: 2.5vw;
+}
+.movieModal .cast{
+    margin: 0 5vw 0 8vw;
+}
+.movieModal .cast h3, .movieModal .summary h3{
+    margin: 20px 0 15px;
+    font-size: 5vw;
+    line-height: 1.5em;
+}
+.movieModal .cast ul{
+    display: flex;
+}
+.movieModal .cast li{
+    width: 25%;
+    padding-right: 3vw;
+    box-sizing: border-box;
+    text-align: center;
+}
+.movieModal .cast li .photo{
+    margin-bottom: 3vw;
+}
+.movieModal .cast li .name{
+    margin-bottom: 2vw;
+    font-size: 3.8vw;
+    line-height: 1em;
+}
+.movieModal .cast li .char{
+    font-size: 3vw;
+    color: #999;
+    line-height: 1.2em;
+}
+.movieModal .summary{
+    margin: 0 8vw 5vw;
+    line-height: 1.5em;
+}
+.movieModal button{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.movieModal button span{
+    font-size: 7vw;
+    line-height: 1em;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* 768px 시작 (태블릿) */
+@media screen and (min-width:768px){
+    .header{
+        margin: 50px 40px;
+    }
+    .header h1{
+        font-size: 26px;
+    }
+    .header .search{
+        max-width: 768px;
+        margin: 0 auto 50px;
+    }
+    .header .search span{
+        top: 10px;
+        font-size: 30px;
+    }
+    .header .search input{
+        width: 100%;
+        padding: 15px 20px 15px 50px;
+    }
+    .header .yearMovie p{
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    .header .yearMovie button{
+        font-size: 2.5vw;
+        line-height: 6vw;
+    }
+    .movieList{
+        margin: 25px 2vw 0 4vw;
+    }
+    .movieItem{
+        width: 33.33%;
+        padding-right: 2vw;
+    }
+    .movieItem .post .over button{
+        width: 10vw;
+        padding-top: 0.4vw;
+        font-size: 1.8vw;
+    }
+    .movieItem .title{
+        font-size: 2.8vw;
+    }
+    .movieItem .txt{
+        font-size: 2vw;
+    }
+    .movieItem .txt p:nth-child(-n+2)::after{
+        margin: 0 .5vw;
+    }
+    .movieItem .txt .star .material-symbols-outlined{
+        font-size: 2vw;
+    }
+    .movieModal .bg{
+        height: 55vw;
+    }
+    .movieModal .info > p{
+        margin-right: 3vw;
+    }
+    .movieModal .info > div{
+        padding-top: 20vw;
+    }
+    .movieModal .info .title{
+        margin-bottom: 5vw;
+        font-size: 3.5vw;
+    }
+    .movieModal .cast{
+        margin: 0 6vw 0 8vw;
+    }
+    .movieModal .cast h3, .movieModal .summary h3{
+        margin: 30px 0 20px;
+        font-size: 3.5vw;
+    }
+    .movieModal .cast li{
+        padding-right: 2vw;
+    }
+    .movieModal .cast li .name{
+        font-size: 2.8vw;
+    }
+    .movieModal .cast li .char{
+        font-size: 2.2vw;
+    }
+    .movieModal .summary p{
+        font-size: 2vw;
+        line-height: 1.8em;
+    }
+    .movieModal button span{
+        font-size: 5vw;
+    }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* 1024px 시작 (태블릿) */
+@media screen and (min-width:1024px){
+    .App{
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+    .header{
+        margin: 40px;
+    }
+    .header .search{
+        margin-bottom: 50px;
+    }
+    .header .yearMovie p{
+        margin-bottom: 20px;
+    }
+    .header .yearMovie button{
+        font-size: 24px;
+        line-height: 60px;
+    }
+    .movieList{
+        margin: 25px 20px 0 40px;
+    }
+    .movieItem{
+        padding-right: 20px;
+    }
+    .movieItem .post{
+        margin-bottom: 20px;
+    }
+    .movieItem .post .over button{
+        width: 100px;
+        padding-top: 5px;
+        border-radius: 40px;
+        font-size: 18px;
+    }
+    .movieItem .title{
+        margin-bottom: 25px;
+        font-size: 24px;
+    }
+    .movieItem .txt{
+        margin-bottom : 40px;
+        font-size: 18px;
+    }
+    .movieItem .txt p:nth-child(-n+2)::after{
+        margin: 7px;
+    }
+    .movieItem .txt .star .material-symbols-outlined{
+        font-size: 18px;
+    }
+    .modalWrap{
+        max-width: 1024px;
+        margin: 0 auto 100px;
+    }
+    .movieModal .bg{
+        height: 500px;
+    }
+    .movieModal .info{
+        margin: -220px 80px 0;
+    }
+    .movieModal .info > p{
+        margin-right: 40px;
+    }
+    .movieModal .info > div{
+        padding-top: 220px;
+    }
+    .movieModal .info .title{
+        margin-bottom: 50px;
+        font-size: 30px;
+    }
+    .movieModal .info .title span{
+        font-size: 20px;
+    }
+    .movieModal .cast{
+        margin: 0 40px 0 80px;
+    }
+    .movieModal .cast h3, .movieModal .summary h3{
+        margin: 50px 0 20px;
+        font-size: 30px;
+    }
+    .movieModal .cast li{
+        padding-right: 40px;
+    }
+    .movieModal .cast li .photo{
+        margin-bottom: 30px;
+    }
+    .movieModal .cast li .name{
+        margin-bottom: 10px;
+        font-size: 22px;
+    }
+    .movieModal .cast li .char{
+        font-size: 18px;
+    }
+    .movieModal .summary{
+        margin: 0 80px 50px;
+    }
+    .movieModal .summary p{
+        font-size: 20px;
+        line-height: 1.8em;
+    }
+    .movieModal button{
+        top: 30px;
+        right: 30px;
+    }
+    .movieModal button span{
+        font-size: 45px;
+    }
 }
